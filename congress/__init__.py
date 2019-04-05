@@ -4,12 +4,13 @@ A Python client for the ProPublica Congress API
 API docs: https://propublica.github.io/congress-api-docs/
 """
 __author__ = "Chris Amico (eyeseast@gmail.com)"
-__version__ = "0.2.0"
+__modified__ = "WebCandy, LLC (webcandyllc@gmail.com)"
+__version__ = "0.3.0"
 
 import os
 
 from .client import Client
-from .utils import CongressError, NotFound, check_chamber, get_congress, CURRENT_CONGRESS
+from .utils import CongressError, NotFound, check_chamber, get_congress, CURRENT_CONGRESS, check_category, check_chamber, check_comms, check_quarter, get_offset
 
 # subclients
 from .bills import BillsClient
@@ -18,8 +19,16 @@ from .committees import CommitteesClient
 from .votes import VotesClient
 from .nominations import NominationsClient
 
+# New as of 4/4/2019
+from .communications import CommunicationsClient
+from .explanations import ExplanationsClient
+from .flooractions import FloorActionsClient
+from .lobbying import LobbyingClient
+from .officeexpenses import OfficeExpensesClient
+from .statements import StatementsClient
 
-__all__ = ('Congress', 'CongressError', 'NotFound', 'get_congress', 'CURRENT_CONGRESS')
+
+__all__ = ('Congress', 'CongressError', 'NotFound', 'get_congress', 'CURRENT_CONGRESS', 'check_category', 'check_chamber', 'check_comms', 'check_quarter', 'get_offset')
 
 
 class Congress(Client):
@@ -54,3 +63,11 @@ class Congress(Client):
         self.members = MembersClient(self.apikey, cache, self.http)
         self.nominations = NominationsClient(self.apikey, cache, self.http)
         self.votes = VotesClient(self.apikey, cache, self.http)
+
+        #New as of 4/4/2019
+        self.communications = CommunicationsClient(self.apikey, cache, self.http)
+        self.explanations = ExplanationsClient(self.apikey, cache, self.http)
+        self.flooractions = FloorActionsClient(self.apikey, cache, self.http)
+        self.lobbying = LobbyingClient(self.apikey, cache, self.http)
+        self.officeexpenses = OfficeExpensesClient(self.apikey, cache, self.http)
+        self.statements = StatementsClient(self.apikey, cache, self.http)
