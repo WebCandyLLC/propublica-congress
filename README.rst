@@ -7,17 +7,11 @@ API <https://projects.propublica.org/api-docs/congress-api/>`__
 Install
 -------
 
-From PyPI:
-
-::
-
-    pip install python-congress
-
 Download and run the install script:
 
 ::
 
-    git clone https://github.com/eyeseast/propublica-congress && cd propublica-congress
+    git clone https://github.com/WebCandyLLC/propublica-congress && cd propublica-congress
     python setup.py install
 
 Usage
