@@ -14,9 +14,9 @@ setup(
     version = VERSION,
     description = "A Python client for the ProPublica Congress API",
     long_description = README,
-    author = "Chris Amico",
-    author_email = "eyeseast@gmail.com",
-    url = 'https://github.com/eyeseast/propublica-congress',
+    author = "WebCandy, LLC",
+    author_email = "webcandyllc@gmail.com",
+    url = 'https://github.com/WebCandyLLC/propublica-congress',
     install_requires = ['httplib2', 'six'],
     classifiers = [
         "Intended Audience :: Developers",
