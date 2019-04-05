@@ -24,9 +24,33 @@ class NotFound(CongressError):
 
 
 def check_chamber(chamber):
-    "Validate that chamber is house or senate"
-    if str(chamber).lower() not in ('house', 'senate'):
-        raise TypeError('chamber must be either "house" or "senate"')
+    "Validate that chamber is house or senate or both or joint"
+    if str(chamber).lower() not in ('house', 'senate', 'both', 'joint'):
+        raise TypeError('chamber must be either "house" or "senate" or "both" or "joint"')
+
+
+def check_category(category):
+    """
+    Validate that category is travel, personnel, rent-utilities, 
+    other-services, supplies, franked-mail, printing, equipment, total
+    """
+    if str(category).lower() not in ('travel', 'personnel', 'rent-utilities', 
+    'other-services', 'supplies', 'franked-mail', 'printing', 'equipment', 'total'):
+        raise TypeError('Category must be an approved category, check docs')
+
+
+def check_comms(category):
+    """
+    Validate that category is ec, pm, or pom
+    """
+    if str(category).lower() not in ('ec', 'pm', 'pom'):
+        raise TypeError('Communications Category must be an approved category, check docs')
+
+
+def check_quarter(quarter):
+    "Validate that quarter is 1, 2, 3, or 4"
+    if str(quarter) not in ('1', '2', '3', '4'):
+        raise TypeError('Quarter must be either 1, 2, 3, or 4')
 
 
 def get_congress(year):
@@ -36,6 +60,12 @@ def get_congress(year):
 
     return int(math.floor((year - 1789) / 2 + 1))
 
+
+def get_offset(page):
+    if page < 1:
+        raise CongressError('Page number must be at least 1.')
+    return (page - 1) * 20
+    
 
 def parse_date(s):
     """
